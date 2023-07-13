@@ -31,11 +31,12 @@ jobs:
       - run: yarn global add @quasar/cli
       - run: yarn install
       - run: quasar build
+      - run: cp -a functions dist/spa/functions
       - name: upload
         uses: actions/upload-artifact@v3
         with:
           name: built-site
-          path: dist/spa
+          path: ${{ inputs.network }}/dist/spa
   test:
       name: test
       runs-on: ubuntu-latest
@@ -89,7 +90,7 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: built-site
-          path: dist/spa
+          path: ${{ inputs.network }}/dist/spa
       - name: publish
         uses: cloudflare/pages-action@v1
         with:
