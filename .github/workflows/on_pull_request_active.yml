@@ -8,7 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
   mainnet-build:
-    name: "Build & test mainnet"
+    name: "Mainnet"
     needs:
       - checkout
     uses: ./.github/workflows/build_job.yml
@@ -16,7 +16,7 @@ jobs:
       network: mainnet
       test: true
   mainnet-publish:
-    name: "Publish mainnet preview"
+    name: "Mainnet"
     needs:
       - mainnet-build
     uses: ./.github/workflows/publish_job.yml
@@ -25,7 +25,7 @@ jobs:
       branch: pr-${{ github.event.number }}
       project: deployment-testing-mainnet
   testnet-build:
-    name: "Build & test testnet"
+    name: "Testnet"
     needs:
       - checkout
     uses: ./.github/workflows/build_job.yml
@@ -33,7 +33,7 @@ jobs:
       network: testnet
       test: true
   testnet-publish:
-    name: "Publish testnet preview"
+    name: "Testnet"
     needs:
       - testnet-build
     uses: ./.github/workflows/publish_job.yml
