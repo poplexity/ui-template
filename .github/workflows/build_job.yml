@@ -31,7 +31,8 @@ jobs:
       - run: yarn global add @quasar/cli
       - run: yarn install
       - run: quasar build
-      - run: cp -a functions dist/spa/functions
+      - run: mkdir dist/spa/functions && cp -a functions/* dist/spa/functions/
+      - run: ls && ls functions && ls dist/spa
       - name: upload
         uses: actions/upload-artifact@v3
         with:
