@@ -1,0 +1,33 @@
+on:
+  workflow_call:
+    inputs:
+      account_id:
+        required: true
+        type: string
+      branch:
+        required: true
+        type: string
+      project:
+        required: true
+        type: string
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    name: Publish to Cloudflare Pages
+    steps:
+      - name: Publish to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ inputs.account_id }}
+          projectName: ${{ inputs.project }}
+          directory: dist/spa
+          # Optional: Enable this if you want to have GitHub Deployments triggered
+          # gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          # the branch is used for the URL, it does not need to equal the current branch so we can
+          #    use it to set the name in the deployment URL
+          branch: ${{ inputs.branch }}
+
