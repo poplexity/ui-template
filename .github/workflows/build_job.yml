@@ -95,6 +95,8 @@ jobs:
           path: dist/spa
       - run: |
           echo "Contents of dist/spa after download-artifact: " && ls dist/spa
+      - run: |
+          echo "Contents of dist/spa/functions after download-artifact: " && ls dist/spa/functions
       - name: publish
         uses: cloudflare/pages-action@v1
         with:
