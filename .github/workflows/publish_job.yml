@@ -15,9 +15,9 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-    name: Publish to Cloudflare Pages
+    name: Publish
     steps:
-      - name: Publish to Cloudflare Pages
+      - name: publish
         uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}

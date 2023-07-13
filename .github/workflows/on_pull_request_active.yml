@@ -24,6 +24,7 @@ jobs:
       account_id: 0dd44352714dc8c855d81b72164cd961
       branch: pr-${{ github.event.number }}
       project: deployment-testing-mainnet
+    secrets: inherit
   testnet-build:
     name: "Testnet"
     needs:
@@ -41,3 +42,4 @@ jobs:
       account_id: 0dd44352714dc8c855d81b72164cd961
       branch: pr-${{ github.event.number }}
       project: deployment-testing-testnet
+    secrets: inherit
