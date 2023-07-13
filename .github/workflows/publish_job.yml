@@ -15,7 +15,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      deployments: write
     name: Publish to Cloudflare Pages
     steps:
       - name: Publish to Cloudflare Pages
