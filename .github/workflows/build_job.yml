@@ -31,6 +31,11 @@ jobs:
       - run: yarn global add @quasar/cli
       - run: yarn install
       - run: quasar build
+      - name: upload
+        uses: actions/upload-artifact@v3
+        with:
+          name: built-site
+          path: dist/spa
   test:
       name: test
       runs-on: ubuntu-latest
@@ -81,6 +86,10 @@ jobs:
     permissions:
       contents: read
     steps:
+      - uses: actions/download-artifact@v3
+        with:
+          name: built-site
+          path: dist/spa
       - name: publish
         uses: cloudflare/pages-action@v1
         with:
