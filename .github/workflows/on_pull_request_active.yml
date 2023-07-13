@@ -15,24 +15,10 @@ jobs:
     with:
       network: mainnet
       test: true
-  mainnet-publish:
-    name: "Mainnet"
-    needs:
-      - mainnet-build
-    runs-on: ubuntu-latest
-    steps:
-      - name: publish
-        uses: cloudflare/pages-action@v1
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: 0dd44352714dc8c855d81b72164cd961
-          projectName: deployment-testing-mainnet
-          directory: dist/spa
-          # Optional: Enable this if you want to have GitHub Deployments triggered
-          # gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-          # the branch is used for the URL, it does not need to equal the current branch so we can
-          #    use it to set the name in the deployment URL
-          branch: pr-${{ github.event.number }}
+      account_id: 0dd44352714dc8c855d81b72164cd961
+      branch: pr-${{ github.event.number }}
+      project: deployment-testing-mainnet
+    secrets: inherit
   testnet-build:
     name: "Testnet"
     needs:
@@ -41,21 +27,7 @@ jobs:
     with:
       network: testnet
       test: true
-  testnet-publish:
-    name: "Testnet"
-    needs:
-      - testnet-build
-    runs-on: ubuntu-latest
-    steps:
-    - name: publish
-      uses: cloudflare/pages-action@v1
-      with:
-        apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-        accountId: 0dd44352714dc8c855d81b72164cd961
-        projectName: deployment-testing-testnet
-        directory: dist/spa
-        # Optional: Enable this if you want to have GitHub Deployments triggered
-        # gitHubToken: ${{ secrets.GITHUB_TOKEN }}
-        # the branch is used for the URL, it does not need to equal the current branch so we can
-        #    use it to set the name in the deployment URL
-        branch: pr-${{ github.event.number }}
+      account_id: 0dd44352714dc8c855d81b72164cd961
+      branch: pr-${{ github.event.number }}
+      project: deployment-testing-testnet
+    secrets: inherit
