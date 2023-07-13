@@ -93,10 +93,7 @@ jobs:
         with:
           name: ${{ inputs.network }}-build
           path: dist/spa
-      - run: |
-          echo "Contents of dist/spa after download-artifact: " && ls dist/spa
-      - run: |
-          echo "Contents of dist/spa/functions after download-artifact: " && ls dist/spa/functions
+      - run: cp -a dist/spa/functions .
       - name: publish
         uses: cloudflare/pages-action@v1
         with:
