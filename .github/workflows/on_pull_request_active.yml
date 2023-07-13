@@ -13,31 +13,31 @@ jobs:
       - checkout
     uses: ./.github/workflows/build_job.yml
     with:
-      account_id: 0dd44352714dc8c855d81b72164cd961
-      branch: pr-${{ github.event.number }}
-      project: deployment-testing-mainnet
+      network: mainnet
+      test: true
   mainnet-publish:
     name: "Publish mainnet preview"
     needs:
       - mainnet-build
     uses: ./.github/workflows/publish_job.yml
     with:
-      network: mainnet
-      test: true
+      account_id: 0dd44352714dc8c855d81b72164cd961
+      branch: pr-${{ github.event.number }}
+      project: deployment-testing-mainnet
   testnet-build:
     name: "Build & test testnet"
     needs:
       - checkout
     uses: ./.github/workflows/build_job.yml
     with:
-      account_id: 0dd44352714dc8c855d81b72164cd961
-      branch: pr-${{ github.event.number }}
-      project: deployment-testing-testnet
+      network: testnet
+      test: true
   testnet-publish:
     name: "Publish testnet preview"
     needs:
       - testnet-build
     uses: ./.github/workflows/publish_job.yml
     with:
-      network: testnet
-      test: true
+      account_id: 0dd44352714dc8c855d81b72164cd961
+      branch: pr-${{ github.event.number }}
+      project: deployment-testing-testnet
