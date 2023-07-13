@@ -14,9 +14,9 @@ jobs:
       NETWORK: ${{ inputs.network }}
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: build
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: '16.17.0'
       - run: yarn global add @quasar/cli
@@ -30,7 +30,10 @@ jobs:
       if: inputs.test
       steps:
         - name: checkout
-          uses: actions/checkout@v2
+          uses: actions/checkout@v3
+        - name: test
+          uses: actions/setup-node@v3
+        - run: yarn install
         - run: yarn test
         - run: yarn lint
 
