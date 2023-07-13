@@ -4,11 +4,11 @@ jobs:
   mainnet:
     runs-on: ubuntu-latest
     steps:
-      - uses: ./github/workflows/build_job.yml
+      - uses: ./.github/workflows/build_job.yml
         with:
           network: mainnet
           test: true
-      - uses: ./github/workflows/publish_job.yml
+      - uses: ./.github/workflows/publish_job.yml
         with:
           account_id: 0dd44352714dc8c855d81b72164cd961
           branch: pr-${{ github.event.number }}
@@ -16,11 +16,11 @@ jobs:
   testnet:
     runs-on: ubuntu-latest
     steps:
-      - uses: ./github/workflows/build_job.yml
+      - uses: ./.github/workflows/build_job.yml
         with:
           network: testnet
           test: true
-      - uses: ./github/workflows/publish_job.yml
+      - uses: ./.github/workflows/publish_job.yml
         with:
           account_id: 0dd44352714dc8c855d81b72164cd961
           branch: pr-${{ github.event.number }}

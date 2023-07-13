@@ -13,11 +13,11 @@ jobs:
     needs:
       - checkout
     steps:
-    - uses: ./github/workflows/build_job.yml
+    - uses: ./.github/workflows/build_job.yml
       with:
         network: mainnet
         test: false
-    - uses: ./github/workflows/publish_job.yml
+    - uses: ./.github/workflows/publish_job.yml
       with:
         account_id: 0dd44352714dc8c855d81b72164cd961
         branch: ${GITHUB_REF##*/}
@@ -27,11 +27,11 @@ jobs:
     needs:
       - checkout
     steps:
-      - uses: ./github/workflows/build_job.yml
+      - uses: ./.github/workflows/build_job.yml
         with:
           network: testnet
           test: false
-      - uses: ./github/workflows/publish_job.yml
+      - uses: ./.github/workflows/publish_job.yml
         with:
           account_id: 0dd44352714dc8c855d81b72164cd961
           branch: ${GITHUB_REF##*/}
