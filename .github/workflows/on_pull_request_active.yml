@@ -1,37 +1,43 @@
+name: "PR: Build, test and deploy preview"
 on:
   pull_request:
 jobs:
   checkout:
+    name: "Checkout"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
   mainnet-build:
+    name: "Build & test mainnet"
     needs:
       - checkout
-    uses: ./.github/workflows/publish_job.yml
+    uses: ./.github/workflows/build_job.yml
     with:
       account_id: 0dd44352714dc8c855d81b72164cd961
       branch: pr-${{ github.event.number }}
       project: deployment-testing-mainnet
   mainnet-publish:
+    name: "Publish mainnet preview"
     needs:
       - mainnet-build
-    uses: ./.github/workflows/build_job.yml
+    uses: ./.github/workflows/publish_job.yml
     with:
       network: mainnet
       test: true
   testnet-build:
+    name: "Build & test testnet"
     needs:
       - checkout
-    uses: ./.github/workflows/publish_job.yml
+    uses: ./.github/workflows/build_job.yml
     with:
       account_id: 0dd44352714dc8c855d81b72164cd961
       branch: pr-${{ github.event.number }}
       project: deployment-testing-testnet
   testnet-publish:
+    name: "Publish testnet preview"
     needs:
       - testnet-build
-    uses: ./.github/workflows/build_job.yml
+    uses: ./.github/workflows/publish_job.yml
     with:
       network: testnet
       test: true
