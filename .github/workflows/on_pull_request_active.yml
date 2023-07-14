@@ -33,15 +33,18 @@ jobs:
     secrets: inherit
   comment:
     name: "Comment Pull Request"
+    runs-on: ubuntu-latest
     needs:
       - mainnet-build
       - testnet-build
-    uses: edumserrano/find-create-or-update-comment@v1
-    with:
-      issue-number: ${{ github.event.pull_request.number }}
-      body-includes: '<!-- pr-ci-comment -->'
-      comment-author: 'github-actions[bot]'
-      body: | # can be a single value or you can compose text with multi-line values
-        <!-- pr-ci-comment -->
-        Hey look!!! A comment 😊😊👍👍
-      edit-mode: replace
+    steps:
+      - name: Comment
+        uses: edumserrano/find-create-or-update-comment@v1
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body-includes: '<!-- pr-ci-comment -->'
+          comment-author: 'github-actions[bot]'
+          body: | # can be a single value or you can compose text with multi-line values
+            <!-- pr-ci-comment -->
+            Hey look!!! A comment 😊😊👍👍
+          edit-mode: replace
