@@ -34,6 +34,8 @@ jobs:
   comment:
     name: "Comment Pull Request"
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
     needs:
       - mainnet-build
       - testnet-build
@@ -41,7 +43,7 @@ jobs:
       - name: Comment
         uses: edumserrano/find-create-or-update-comment@v1
         with:
-          issue-number: ${{ github.event.pull_request.number }}
+          issue-number: ${{ github.event.number }}
           body-includes: '<!-- pr-ci-comment -->'
           comment-author: 'github-actions[bot]'
           body: | # can be a single value or you can compose text with multi-line values
