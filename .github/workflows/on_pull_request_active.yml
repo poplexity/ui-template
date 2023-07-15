@@ -27,9 +27,9 @@ jobs:
     with:
       network: mainnet
       test: true
-      account_id: ${{ env.ACCOUNT_ID }}
-      branch: ${{ env.PREVIEW_NAME }}
-      project: ${{ env.MAINNET_PROJECT }}
+      account_id: "${{ env.ACCOUNT_ID }}"
+      branch: "${{ env.PREVIEW_NAME }}"
+      project: "${{ env.MAINNET_PROJECT }}"
     secrets: inherit
   testnet-build:
     name: "Testnet"
