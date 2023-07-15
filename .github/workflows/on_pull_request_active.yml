@@ -54,7 +54,7 @@ jobs:
             <!-- pr-ci-comment -->
             # Deploy Preview Details
 
-            | **Built from SHA:**     | `${{ GITHUB_SHA }}` |
+            | **Built from SHA:**     | `${{ env.GITHUB_SHA }}` |
             | **Mainnet URL**:        | pr-${{ github.event.number }}.deployment-testing.pages.dev |
             | **Testnet URL**:        | pr-${{ github.event.number }}.deployment-testing-testnet.pages.dev |
           edit-mode: replace
