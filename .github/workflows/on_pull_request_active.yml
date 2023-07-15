@@ -39,9 +39,9 @@ jobs:
     with:
       network: testnet
       test: true
-      account_id: ${{ env.ACCOUNT_ID }}
-      branch: ${{ env.PREVIEW_NAME }}
-      project: ${{ env.TESTNET_PROJECT }}
+      account_id: "${{ env.ACCOUNT_ID }}"
+      branch: "${{ env.PREVIEW_NAME }}"
+      project: "${{ env.TESTNET_PROJECT }}"
     secrets: inherit
   comment:
     name: "Comment Pull Request"
