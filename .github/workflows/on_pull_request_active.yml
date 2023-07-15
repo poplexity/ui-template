@@ -16,6 +16,8 @@ jobs:
     name: "Checkout"
     runs-on: ubuntu-latest
     steps:
+      - name: "Test var ${{ env.ACCOUNT_ID }}"
+        run: "echo $ACCOUNT_ID"
       - uses: actions/checkout@v3
   mainnet-build:
     name: "Mainnet"
