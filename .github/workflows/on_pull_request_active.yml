@@ -3,14 +3,6 @@ name: "PR: Build, test and deploy preview"
 on:
   pull_request:
 
-env:
-  PREVIEW_NAME: pr-${{ github.event.number }}
-  ACCOUNT_ID: 0dd44352714dc8c855d81b72164cd961
-  MAINNET_PROJECT: deployment-testing-mainnet
-  MAINNET_PRODUCTION_URL: deployment-testing.pages.dev
-  TESTNET_PROJECT: deployment-testing-testnet
-  TESTNET_PRODUCTION_URL: deployment-testing-testnet.pages.dev
-
 jobs:
   checkout:
     name: "Checkout"
@@ -27,9 +19,9 @@ jobs:
     with:
       network: mainnet
       test: true
-      account_id: ${{ env.ACCOUNT_ID }}
-      branch: ${{ env.PREVIEW_NAME }}
-      project: ${{ env.MAINNET_PROJECT }}
+      account_id: 0dd44352714dc8c855d81b72164cd961
+      branch: pr-${{ github.event.number }}
+      project: deployment-testing-mainnet
     secrets: inherit
   testnet-build:
     name: "Testnet"
@@ -39,9 +31,9 @@ jobs:
     with:
       network: testnet
       test: true
-      account_id: ${{ env.ACCOUNT_ID }}
-      branch: ${{ env.PREVIEW_NAME }}
-      project: ${{ env.TESTNET_PROJECT }}
+      account_id: 0dd44352714dc8c855d81b72164cd961
+      branch: pr-${{ github.event.number }}
+      project: deployment-testing-testnet
     secrets: inherit
   comment:
     name: "Comment Pull Request"
@@ -63,6 +55,6 @@ jobs:
             # Deploy Preview Details
 
             | **Built from SHA:**     | `${{ GITHUB_SHA }}` |
-            | **Mainnet URL**:        | ${{ env.PREVIEW_NAME }}.${{ env.MAINNET_PRODUCTION_URL }} |
-            | **Testnet URL**:        | ${{ env.PREVIEW_NAME }}.${{ env.TESTNET_PRODUCTION_URL }} |
+            | **Mainnet URL**:        | pr-${{ github.event.number }}.deployment-testing.pages.dev |
+            | **Testnet URL**:        | pr-${{ github.event.number }}.deployment-testing-testnet.pages.dev |
           edit-mode: replace
