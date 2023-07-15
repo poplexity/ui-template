@@ -9,5 +9,5 @@ jobs:
   one:
     runs-on: ubuntu-latest
     steps:
-      - name: "Echo in file"
+      - name: "Echo $TEST_ENV"
         run: echo "$TEST_ENV"
