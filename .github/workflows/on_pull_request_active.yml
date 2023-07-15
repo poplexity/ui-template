@@ -19,3 +19,15 @@ jobs:
       - name: "Test var ${{ env.ACCOUNT_ID }}"
         run: "echo $ACCOUNT_ID"
       - uses: actions/checkout@v3
+  mainnet-build:
+    name: "Mainnet"
+    needs:
+      - checkout
+    uses: ./.github/workflows/build_job.yml
+    with:
+      network: mainnet
+      test: true
+      account_id: env.ACCOUNT_ID
+      branch: env.PREVIEW_NAME
+      project: env.MAINNET_PROJECT
+    secrets: inherit
