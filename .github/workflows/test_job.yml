@@ -9,5 +9,5 @@ jobs:
   one:
     runs-on: ubuntu-latest
     steps:
-      - name: "GITHUB SHA: ${{env.TEST_ENV}}"
+      - name: "GITHUB SHA: ${{github.sha}}"
         run: echo "$TEST_ENV"
