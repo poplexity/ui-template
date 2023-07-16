@@ -52,9 +52,9 @@ jobs:
           comment-author: 'github-actions[bot]'
           body: | # can be a single value or you can compose text with multi-line values
             <!-- pr-ci-comment -->
-            # Deploy Preview Details
+            # <span aria-hidden="true">✅</span> Pull Request Deploy Preview Details
 
-            | **Built from SHA:**     | `${{ env.GITHUB_SHA }}` |
-            | **Mainnet URL**:        | pr-${{ github.event.number }}.deployment-testing.pages.dev |
-            | **Testnet URL**:        | pr-${{ github.event.number }}.deployment-testing-testnet.pages.dev |
+            **<span aria-hidden="true">🔨</span> Built from SHA ** : `${{ github.sha }}`
+            **<span aria-hidden="true">🔍</span> Mainnet Deploy URL**: https://pr-${{ github.event.number }}.deployment-testing.pages.dev
+            **<span aria-hidden="true">🔍</span> Testnet Deploy URL**: https://pr-${{ github.event.number }}.deployment-testing-testnet.pages.dev
           edit-mode: replace
