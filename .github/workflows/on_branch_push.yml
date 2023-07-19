@@ -1,38 +1,40 @@
+name: "Push to dev or master: Build, test and deploy"
+
 on:
   push:
     branches:
       - master
       - dev
+
 jobs:
   checkout:
+    name: "Checkout"
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-  mainnet:
-    runs-on: ubuntu-latest
+      - name: "Test var ${{ env.ACCOUNT_ID }}"
+        run: "echo $ACCOUNT_ID"
+      - uses: actions/checkout@v3
+  mainnet-build:
+    name: "Mainnet"
     needs:
       - checkout
-    steps:
-    - uses: ./.github/workflows/build_job.yml
-      with:
-        network: mainnet
-        test: false
-    - uses: ./.github/workflows/publish_job.yml
-      with:
-        account_id: 0dd44352714dc8c855d81b72164cd961
-        branch: ${{ GITHUB_REF##*/ == 'master' && 'production' || GITHUB_REF##*/ }}
-        project: deployment-testing-mainnet
-  testnet:
-    runs-on: ubuntu-latest
+    uses: ./.github/workflows/build_job.yml
+    with:
+      network: mainnet
+      test: false
+      account_id: 0dd44352714dc8c855d81b72164cd961
+      branch: ${{ GITHUB_REF##*/ == 'master' && 'production' || GITHUB_REF##*/ }}
+      project: deployment-testing-mainnet
+    secrets: inherit
+  testnet-build:
+    name: "Testnet"
     needs:
       - checkout
-    steps:
-      - uses: ./.github/workflows/build_job.yml
-        with:
-          network: testnet
-          test: false
-      - uses: ./.github/workflows/publish_job.yml
-        with:
-          account_id: 0dd44352714dc8c855d81b72164cd961
-          branch: ${GITHUB_REF##*/}
-          project: deployment-testing-testnet
+    uses: ./.github/workflows/build_job.yml
+    with:
+      network: testnet
+      test: false
+      account_id: 0dd44352714dc8c855d81b72164cd961
+      branch: ${{ GITHUB_REF##*/ == 'master' && 'production' || GITHUB_REF##*/ }}
+      project: deployment-testing-testnet
+    secrets: inherit

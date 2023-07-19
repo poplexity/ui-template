@@ -54,7 +54,7 @@ jobs:
             <!-- pr-ci-comment -->
             # <span aria-hidden="true">✅</span> Pull Request Deploy Preview Details
 
-            **<span aria-hidden="true">🔨</span> Built from SHA ** : `${{ github.sha }}`
+            **<span aria-hidden="true">🔨</span> Built from SHA **: `${{ github.sha }}`
             **<span aria-hidden="true">🔍</span> Mainnet Deploy URL**: https://pr-${{ github.event.number }}.deployment-testing.pages.dev
             **<span aria-hidden="true">🔍</span> Testnet Deploy URL**: https://pr-${{ github.event.number }}.deployment-testing-testnet.pages.dev
           edit-mode: replace
