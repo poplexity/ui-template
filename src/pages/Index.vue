@@ -1,6 +1,7 @@
 <template>
   <q-page class="column justify-center items-center">
     <img class="logo" alt="Telos logo" src="~assets/telos-logo-full.png" />
+    <h1>NETWORK: {{ process.env.NETWORK }}</h1>
     <h6 class="description">
       Use this template as a starting point for your app and save the time of writing all the boilerplate code.
       It has an implementation of UAL (Universal

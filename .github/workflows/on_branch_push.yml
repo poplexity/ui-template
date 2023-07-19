@@ -1,0 +1,40 @@
+name: "Push to dev or master: Build, test and deploy"
+
+on:
+  push:
+    branches:
+      - master
+      - dev
+
+jobs:
+  checkout:
+    name: "Checkout"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Test var ${{ env.ACCOUNT_ID }}"
+        run: "echo $ACCOUNT_ID"
+      - uses: actions/checkout@v3
+  mainnet-build:
+    name: "Mainnet"
+    needs:
+      - checkout
+    uses: ./.github/workflows/build_job.yml
+    with:
+      network: mainnet
+      test: false
+      account_id: 0dd44352714dc8c855d81b72164cd961
+      branch: ${{ GITHUB_REF##*/ == 'master' && 'production' || GITHUB_REF##*/ }}
+      project: deployment-testing-mainnet
+    secrets: inherit
+  testnet-build:
+    name: "Testnet"
+    needs:
+      - checkout
+    uses: ./.github/workflows/build_job.yml
+    with:
+      network: testnet
+      test: false
+      account_id: 0dd44352714dc8c855d81b72164cd961
+      branch: ${{ GITHUB_REF##*/ == 'master' && 'production' || GITHUB_REF##*/ }}
+      project: deployment-testing-testnet
+    secrets: inherit

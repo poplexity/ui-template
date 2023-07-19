@@ -1,10 +1,15 @@
 <template>
   <div id="q-app">
-    <router-view />
+    <h1>NETWORK: {{ network }}</h1>
   </div>
 </template>
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+    data() {
+      return {
+        network: process.env.NETWORK
+      };
+    },
 }
 </script>
