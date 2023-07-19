@@ -23,7 +23,7 @@ jobs:
       network: mainnet
       test: false
       account_id: 0dd44352714dc8c855d81b72164cd961
-      branch: ${{ GITHUB_REF##*/ == 'master' && 'production' || GITHUB_REF##*/ }}
+      branch: ${{ github.ref_name == 'master' && 'production' || github.ref_name }}
       project: deployment-testing-mainnet
     secrets: inherit
   testnet-build:
@@ -35,6 +35,6 @@ jobs:
       network: testnet
       test: false
       account_id: 0dd44352714dc8c855d81b72164cd961
-      branch: ${{ GITHUB_REF##*/ == 'master' && 'production' || GITHUB_REF##*/ }}
+      branch: ${{ github.ref_name == 'master' && 'production' || github.ref_name }}
       project: deployment-testing-testnet
     secrets: inherit
