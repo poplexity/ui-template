@@ -28,7 +28,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '16.17.0'
-      - run: exit 255
       - run: yarn global add @quasar/cli
       - run: yarn install
       - run: quasar build
