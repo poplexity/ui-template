@@ -1,4 +1,4 @@
-name: "PR: Build, test and deploy preview"
+name: "PR: Build, test and deploy previews"
 
 on:
   pull_request:
